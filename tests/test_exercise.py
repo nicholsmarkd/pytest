@@ -1,6 +1,3 @@
-import pytest
-
-
 def admin_command(command, sudo=True):
     """
     Prefix a command with `sudo` unless it is explicitly not needed. Expects
