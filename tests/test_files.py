@@ -1,18 +1,19 @@
 import os
 from src.main import is_done
 
+
 class TestIsDone:
 
-    def setup(self):
+    def setup_method(self):
         self.test_file = "/tmp/test_file"
 
-    def teardown(self):
+    def teardown_method(self):
         if os.path.exists(self.test_file):
             os.remove(self.test_file)
 
     def write_tmp_file(self, content):
-            with open(self.test_file, "w") as _f:
-                _f.write(content)
+        with open(self.test_file, "w") as _f:
+            _f.write(content)
 
     def test_yes(self):
         self.write_tmp_file("yes")

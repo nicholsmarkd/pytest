@@ -4,7 +4,9 @@ def str_to_bool(string):
     elif string.lower() in ['no', 'n', '0']:
         return False
 
-import pytest 
+
+import pytest
+
 
 @pytest.mark.parametrize("string", ['Y', 'y', '1', 'YES'])
 def test_str_to_bool_true(string):
@@ -15,16 +17,17 @@ def test_str_to_bool_true(string):
 def test_str_to_bool_false(string):
     assert str_to_bool(string) is False
 
+
 import os
 
 
 class TestFile:
 
-    def setup(self):
+    def setup_method(self):
         with open("/tmp/done", 'w') as _f:
             _f.write("1")
 
-    def teardown(self):
+    def teardown_method(self):
         try:
             os.remove("/tmp/done")
         except OSError:
@@ -35,6 +38,7 @@ class TestFile:
             contents = _f.read()
         assert contents == "1"
 
+
 class TestFile2:
 
     def test_f(self, tmpfile):
@@ -43,7 +47,9 @@ class TestFile2:
             contents = _f.read()
         assert contents == "1"
 
+
 import pytest
+
 
 @pytest.fixture
 def tmpfile(tmpdir):
@@ -51,4 +57,5 @@ def tmpfile(tmpdir):
         file = tmpdir.join("done")
         file.write("1")
         return file.strpath
+
     return write
